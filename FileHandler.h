@@ -20,6 +20,7 @@ public:
     void output();
     // get results from tree
     void queryTree(const string&);
+
     // to do OR queries, do multiple query trees and unioning
     // to do AND queries, do multiple querry trees and intersection
     // to do NOT queries, do multiple querry trees and set difference

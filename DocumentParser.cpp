@@ -9,12 +9,12 @@ void DocumentParser::parseDoc(){
     // read in file
     ifstream f(FileName);
 
+    // wrap istream
+    rapidjson::IStreamWrapper wrap(f);
+
     // get all the text from file
     char text[1000000];
-    f.getline(text,1000000);
-
-    // parse text
-    d.Parse(text);
+    d.ParseStream(wrap);
 
 }
 string DocumentParser::getText(){

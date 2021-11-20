@@ -2,6 +2,7 @@
 #define INC_21F_SRCH_NGN_CULLENW_DOCUMENTPARSER_H
 
 #include "rapidjson/document.h"
+#include "rapidjson/istreamwrapper.h"
 using namespace std;
 
 class DocumentParser {

@@ -5,22 +5,8 @@
 using namespace std;
 namespace fs = std::filesystem;
 
-/*
- * PASS ABSOLUTE PATH TO DATSET AND SEARCH WORD TO COMMAND ARGS
- */
-
 FileHandler files;
-
-// loop over the files in the directory
-void readInFiles(string path){
-    for (const auto & entry : fs::recursive_directory_iterator(path)){
-        if(!is_directory(entry)){
-            string filename = entry.path().c_str();
-            // update index
-            files.updateIndex(filename);
-        }
-    }
-}
+void readInFiles(const string&);
 
 int main(int argc, char* argv[]) {
     // read in files and create avl tree
@@ -31,7 +17,15 @@ int main(int argc, char* argv[]) {
     // output tree
     //files.output();
 
-
-
     return 0;
+}
+// loop over the files in the directory
+void readInFiles(const string& path){
+    for (const auto & entry : fs::recursive_directory_iterator(path)){
+        if(!is_directory(entry)){
+            string filename = entry.path().c_str();
+            // update index
+            files.updateIndex(filename);
+        }
+    }
 }

@@ -9,6 +9,7 @@ void FileHandler::output(){
     i.output();
 }
 void FileHandler::queryTree(const string& word){
+
     q.changeWord(word);
     string query = q.getWord();
     i.getDocsFromTree(query);
