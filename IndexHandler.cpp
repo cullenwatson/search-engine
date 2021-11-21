@@ -1,6 +1,5 @@
 #include "IndexHandler.h"
 #include<sstream>
-#include<algorithm>
 #include<set>
 #include<unordered_map>
 #include "porter2_stemmer.h"
@@ -42,18 +41,13 @@ void IndexHandler::addDoc(const string&docName, const string&docText){
         // continue if word is empty
         if(word.empty())
             continue;
-        // see if word is in tree
-        IndexEntry temp(word);
-        IndexEntry* entry = TreeIndex.getElement(temp);
 
-        //  insert node
-        if(entry==nullptr){
-            IndexEntry idx(word,docName);
-            TreeIndex.insert(idx);
-        }
-            // or add document
-        else
-            entry->addDocToIdxEntry(docName);
+        // insert word to tree
+        IndexEntry temp(word);
+        IndexEntry& test = TreeIndex.insert(temp);
+
+        // add doc to entry
+        test.addDocToIdxEntry(docName);
 
     }
 }

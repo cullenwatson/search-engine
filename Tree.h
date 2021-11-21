@@ -27,14 +27,17 @@ private:
         return a > b ? a : b;
     }
 
-    void insert(const T& x, Node*& curr){
+    T& insert(const T& x, Node*& curr){
         if(curr==nullptr)
             curr = new Node(x); // add node
         else if(x < curr->element)
-            insert(x, curr->left); // descend left child
+            return insert(x, curr->left); // descend left child
         else if(curr->element < x)
-            insert(x, curr->right); // descend right child
+            return insert(x, curr->right); // descend right child
+        else if(x == curr->element)
+            return curr->element;
         balance(curr);
+        return curr->element;
     }
     void balance(Node*& t){
         if(t==nullptr)
@@ -118,8 +121,8 @@ public:
     }
 
     // public interface functions
-    void insert(const T &x) {
-        insert(x, root);
+    T& insert(const T &x) {
+        return insert(x, root);
     }
     T* getElement(const T &x) {
         return getElement(x, root);
