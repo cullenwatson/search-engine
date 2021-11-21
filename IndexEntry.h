@@ -4,34 +4,22 @@
 #include <utility>
 #include<vector>
 #include <iostream>
-#include<set>
+#include<unordered_map>
 using namespace std;
 
 class IndexEntry{
 private:
-    class Doc{
-    public:
-        string DocName;
-        int Quantity;
 
-        // constructor
-        Doc(string doc): DocName(std::move(doc)), Quantity(1){}
-        void increase(){ Quantity++;}
-
-        bool operator== (const string& s) const{
-            return DocName == s;
-        }
-    };
     string Word;
-    vector<Doc> DocNames;
+    unordered_map<string,int> DocNames;
 public:
     // constructors
     IndexEntry(string word, const string& docName): Word(std::move(word)){
-        Doc temp(docName);
-        DocNames.push_back(temp);
+        DocNames[docName]=1;
+
     }
     // constructor ONLY for operator==
-    IndexEntry(string word): Word(std::move(word)){}
+    explicit IndexEntry(string word): Word(std::move(word)){}
 
     // add doc to DocNames if word exists
     void addDocToIdxEntry(const string&);
@@ -44,7 +32,7 @@ public:
     friend std::ostream& operator<< (std::ostream&os, const IndexEntry&s){
         os << s.Word<<endl;
         for(const auto & docName : s.DocNames){
-            os<<"     "<<docName.DocName<<" ("<<docName.Quantity<<") "<<endl;
+            os<<"     "<<docName.first<<" ("<<docName.second<<") "<<endl;
         }
         return os;
     }

@@ -2,13 +2,13 @@
 #include<algorithm>
 void IndexEntry::addDocToIdxEntry(const string& docName){
     // increase quantity
-    auto it= find(DocNames.begin(),DocNames.end(),docName);
+    auto it= DocNames.find(docName);
     if(it!=DocNames.end()){
-        it->increase();
+        it->second++;
     }
-        // or add doc
+    // or add doc
     else
-        DocNames.emplace_back(docName);
+        DocNames[docName] = 1;
 }
 
 bool IndexEntry::operator== (const IndexEntry& s) const {
