@@ -5,6 +5,7 @@
 #include<vector>
 #include <iostream>
 #include<unordered_map>
+#include <set>
 using namespace std;
 
 class IndexEntry{
@@ -12,6 +13,7 @@ private:
 
     string Word;
     unordered_map<string,int> DocNames;
+    set<string>DocNamesSet;
 public:
     // constructors
     IndexEntry(string word, const string& docName): Word(std::move(word)){
@@ -30,12 +32,13 @@ public:
     bool operator== (const IndexEntry& s) const;
 
     friend std::ostream& operator<< (std::ostream&os, const IndexEntry&s){
-        os << s.Word<<endl;
+        os << s.Word<<" (QUERY)"<<endl;
         for(const auto & docName : s.DocNames){
             os<<"     "<<docName.first<<" ("<<docName.second<<") "<<endl;
         }
         return os;
     }
+    set<string>& getDocNamesSet(){ return DocNamesSet;}
 };
 
 

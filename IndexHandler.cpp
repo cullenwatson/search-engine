@@ -61,35 +61,43 @@ void IndexHandler::addDoc(const string&docName, const string&docText){
 void IndexHandler::output(){
     TreeIndex.output();
 }
-void IndexHandler::getDocsFromTree(const string&word){
+set<string>* IndexHandler::getDocsFromTree(const string&word){
     IndexEntry* result= TreeIndex.getElement(IndexEntry(word));
-    if(result==nullptr){
+    if(result==nullptr)
         cout<<"No results found\n";
-    }
     else
         cout<<*result<<endl;
+
+    return &result->getDocNamesSet();
 }
-void IndexHandler::getDocsFromHashPerson(const string&word){
+set<string>* IndexHandler::getDocsFromHashPerson(const string&word){
+    cout<<word<<" (PERSON)"<<endl;
+
     if(hashTablePersons.get(word)!=nullptr){
         set<string>& a = *hashTablePersons.get(word);
         for(const auto& e: a){
-            cout<<e<<endl;
+            cout<<"     "<<e<<endl;
         }
+        cout<<endl;
     }
     else{
-        cout<<"No docs for that person found";
+        cout<<"     No docs for that person found\n\n";
     }
+    return hashTablePersons.get(word);
 }
-void IndexHandler::getDocsFromHashOrgs(const string&word){
+set<string>* IndexHandler::getDocsFromHashOrgs(const string&word){
+    cout<<word<<" (ORG)"<<endl;
     if(hashTableOrgs.get(word)!=nullptr){
         set<string>& a = *hashTableOrgs.get(word);
         for(const auto& e: a){
-            cout<<e<<endl;
+            cout<<"     "<<e<<endl;
         }
+        cout<<endl;
     }
     else{
-        cout<<"No docs for that org found";
+        cout<<"     No docs for that org found\n\n";
     }
+    return hashTableOrgs.get(word);
 }
 
 

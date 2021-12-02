@@ -22,11 +22,33 @@ void FileHandler::queryTree(const string& word){
     string query = q.getWord();
 
     // get docs
-    i.getDocsFromTree(query);
+    wordSet = i.getDocsFromTree(query);
 }
 void FileHandler::queryHashPersons(const string&person){
-    i.getDocsFromHashPerson(person);
+    persons = i.getDocsFromHashPerson(person);
 }
 void FileHandler::queryHashOrgs(const string&person){
-    i.getDocsFromHashOrgs(person);
+    orgs = i.getDocsFromHashOrgs(person);
+}
+void FileHandler::intersectSets(){
+    if(persons!=nullptr && orgs!=nullptr && wordSet!=nullptr){
+        set<string> temp;
+        // intersect first 2 sets
+        set_intersection(persons->begin(),persons->end(),orgs->begin(),orgs->end(),inserter(temp,temp.begin()));
+        // intersect last set
+        set_intersection(temp.begin(),temp.end(),wordSet->begin(),wordSet->end(),inserter(intersect,intersect.begin()));
+
+    }
+
+}
+void FileHandler::outputIntersect(){
+    cout<<"INTERSECTION\n";
+    if(intersect.size()==0)
+        cout<<"No results found\n";
+    else{
+        for(const auto& e: intersect){
+            cout<<"     "<<e<<endl;
+        }
+    }
+
 }

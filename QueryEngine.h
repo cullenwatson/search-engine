@@ -5,6 +5,7 @@
 
 #include<iostream>
 #include "porter2_stemmer.h"
+#include<set>
 using namespace std;
 
 class QueryEngine {

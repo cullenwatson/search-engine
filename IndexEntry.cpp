@@ -8,8 +8,10 @@ void IndexEntry::addDocToIdxEntry(const string& docName){
         //return;
     }
     // or add doc
-    else
+    else{
         DocNames[docName] = 1;
+        DocNamesSet.insert(docName);
+    }
 }
 
 bool IndexEntry::operator== (const IndexEntry& s) const {

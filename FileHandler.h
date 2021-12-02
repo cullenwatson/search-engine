@@ -13,6 +13,11 @@ class FileHandler {
     IndexHandler i;
     DocumentParser doc;
     QueryEngine q;
+
+    set<string> intersect;
+    set<string>* wordSet;
+    set<string>* persons;
+    set<string>* orgs;
 public:
     // add file to update tree
     void updateIndex(const string&);
@@ -25,6 +30,9 @@ public:
     void queryHashPersons(const string&);
     void queryHashOrgs(const string&);
 
+    // intersect
+    void intersectSets();
+    void outputIntersect();
 
     // to do OR queries, do multiple query trees and unioning
     // to do AND queries, do multiple querry trees and intersection
