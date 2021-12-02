@@ -10,10 +10,15 @@ void readInFiles(const string&);
 
 int main(int argc, char* argv[]) {
     // read in files and create avl tree
-    char* path = argv[1];
+    char* path = "/home/cullenog/smalldataset";
     readInFiles(path);
 
-    files.queryTree(argv[2]);
+    string search;
+    //cout<<"Enter a search:";
+    //getline(cin,search);
+    //files.queryTree(search);
+   // files.queryHashPersons("dominic blakemore");
+    files.queryHashOrgs("reuters staff");
     // output tree
     //files.output();
 

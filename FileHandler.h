@@ -18,8 +18,13 @@ public:
     void updateIndex(const string&);
     // output tree
     void output();
+
+
     // get results from tree
     void queryTree(const string&);
+    void queryHashPersons(const string&);
+    void queryHashOrgs(const string&);
+
 
     // to do OR queries, do multiple query trees and unioning
     // to do AND queries, do multiple querry trees and intersection
