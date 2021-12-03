@@ -32,6 +32,8 @@ public:
     // output resulting set
     void outputResults();
 
+    int getNumWords(){ return i.getNumWords();};
+    int getTreeSize(){return i.getTreeSize();};
 };
 
 

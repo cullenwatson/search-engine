@@ -16,6 +16,7 @@ private:
                 element( theElement ), left( lt ), right( rt ), height( h ) { }
     };
     Node *root;
+    int size;
     // get height of -1 if nullptr
     int height(Node* v){
         if(v==nullptr)
@@ -28,8 +29,10 @@ private:
     }
 
     T& insert(const T& x, Node*& curr){
-        if(curr==nullptr)
+        if(curr==nullptr){
+            size++;
             curr = new Node(x); // add node
+        }
         else if(x < curr->element)
             return insert(x, curr->left); // descend left child
         else if(curr->element < x)
@@ -130,6 +133,7 @@ public:
     void output(){
         output(root);
     }
+    int getSize(){ return size;}
 
 };
 

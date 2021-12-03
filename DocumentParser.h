@@ -20,7 +20,6 @@ public:
     string getTextBlurb();
 
     // get file
-    string getFileName();
     string getTitle();
     string getPublishDate();
     string getSite();

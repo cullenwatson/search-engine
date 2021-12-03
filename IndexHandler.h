@@ -12,6 +12,8 @@ private:
     Tree<IndexEntry> TreeIndex;
     HashTable<string, string> hashTablePersons;
     HashTable<string, string> hashTableOrgs;
+    int numWords=0;
+    int treeSize=0;
 
 public:
     // add words to tree
@@ -30,6 +32,12 @@ public:
     set<string>* getDocsFromTree(const string&);
     set<string>* getDocsFromHashPerson(const string&word);
     set<string>* getDocsFromHashOrgs(const string&word);
+
+    int getNumWords(){return numWords;}
+    int getTreeSize(){
+        treeSize = TreeIndex.getSize();
+        return treeSize;
+    }
 };
 
 #endif //INC_21F_SRCH_NGN_CULLENW_INDEXHANDLER_H

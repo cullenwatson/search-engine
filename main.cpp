@@ -24,8 +24,8 @@ int main(int argc, char* argv[]) {
         // output menu system
         cout<<"\n  -----SEARCH ENGINE MENU-----\n";
         cout<<"        (1) Load Files\n";
-        cout<<"        (2) Search\n";
-        cout<<"        (3) Search Engine Statistics\n";
+        cout<<"        (2) Search Query\n";
+        cout<<"        (3) Search Engine Stats\n";
         cout<<"  ENTER A MENU OPTION: ";
         cin>>option;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
         switch(option){
             // create index
             case 1:
-                if(parsed==false){
+                if(!parsed){
                     cout<<"\nEnter the path to the corpus: ";
                     getline(cin,path);
                     numOfFiles = readInFiles(path);
@@ -51,7 +51,14 @@ int main(int argc, char* argv[]) {
                 break;
             case 3:
                 cout<<"\n  -----SEARCH ENGINE STATISTICS-----\n";
-                cout<<"  Total number of individual articles indexed: "<<numOfFiles<<endl<<endl;
+                cout<<"  Total number of individual articles indexed: "<<numOfFiles<<endl;
+                int avgNumWords;
+                if(!parsed)
+                    avgNumWords=0;
+                else
+                    avgNumWords = files.getNumWords() / numOfFiles;
+                cout<<"  Average number of words indexed per article: "<<avgNumWords<<endl;
+                cout<<"  Total number of unique words: "<<files.getTreeSize()<<endl;
                 break;
 
             case -1: break;
@@ -70,7 +77,7 @@ int readInFiles(const string& path){
         cout<<"\nFolder not found\n";
         return 0;
     }else{
-        cout<<"\nCreating index...";
+        cout<<"\nCreating index..."<<flush;
         for (const auto & entry : fs::recursive_directory_iterator(path)){
             if(!is_directory(entry)){
                 string filename = entry.path().c_str();

@@ -29,6 +29,7 @@ void IndexHandler::addDoc(const string&docName, const string&docText){
         if(it!=stopWords.end()){
             continue;
         }
+        numWords++;
         // check if word has been hashed
         auto it2 = hashedWords.find(word);
         if(it2!=hashedWords.end()){

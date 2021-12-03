@@ -56,9 +56,6 @@ string DocumentParser::getTitle(){
 string DocumentParser::getPublishDate(){
     return d["published"].GetString();
 }
-string DocumentParser::getFileName(){
-    return FileName;
-}
 string DocumentParser::getSite(){
     return d["url"].GetString();
 }
