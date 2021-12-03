@@ -1,49 +1,93 @@
 #include <iostream>
 #include<filesystem>
 #include "FileHandler.h"
-#include "QueryEngine.h"
 #include <sstream>
 #include <algorithm>
 #include<limits>
+#include <sys/stat.h>
 using namespace std;
 namespace fs = std::filesystem;
 
 FileHandler files;
-void readInFiles(const string&);
+bool parsed = false;
+
+int readInFiles(const string&);
 void getSearch();
 int main(int argc, char* argv[]) {
     // read in files and create avl tree
-    char* path = "/home/cullenog/smalldataset";
-    readInFiles(path);
+    //string path = "/home/cullenog/smalldataset";
+    string path;
 
-    int option;
-    // get search from user
-    cout<<"1. Search Term\n";
-    cin>>option;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    switch(option){
-        case 1:
-            getSearch();
-    }
+    int option=0;
+    int numOfFiles=0;
+    do{
+        // output menu system
+        cout<<"\n  -----SEARCH ENGINE MENU-----\n";
+        cout<<"        (1) Load Files\n";
+        cout<<"        (2) Search\n";
+        cout<<"        (3) Search Engine Statistics\n";
+        cout<<"  ENTER A MENU OPTION: ";
+        cin>>option;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
+        switch(option){
+            // create index
+            case 1:
+                if(parsed==false){
+                    cout<<"\nEnter the path to the corpus: ";
+                    getline(cin,path);
+                    numOfFiles = readInFiles(path);
+                }
+                else{
+                    cout<<"\nFiles already loaded!\n";
+                }
+                break;
+           // output search results
+            case 2:
+                if(parsed)
+                    getSearch();
+                else
+                    cout<<"\nNo data has been loaded!\n";
+                break;
+            case 3:
+                cout<<"\n  -----SEARCH ENGINE STATISTICS-----\n";
+                cout<<"  Total number of individual articles indexed: "<<numOfFiles<<endl<<endl;
+                break;
 
+            case -1: break;
+            default: option =0;
+        }
+    }while(option!=-1);
 
     return 0;
 }
 // loop over the files in the directory
-void readInFiles(const string& path){
-    for (const auto & entry : fs::recursive_directory_iterator(path)){
-        if(!is_directory(entry)){
-            string filename = entry.path().c_str();
-            // update index
-            files.updateIndex(filename);
+int readInFiles(const string& path){
+    int totalNumFiles=0;
+    // check if path is valid
+    struct stat info;
+    if( stat( path.c_str(), &info ) != 0 ){
+        cout<<"\nFolder not found\n";
+        return 0;
+    }else{
+        cout<<"\nCreating index...";
+        for (const auto & entry : fs::recursive_directory_iterator(path)){
+            if(!is_directory(entry)){
+                string filename = entry.path().c_str();
+                // update index
+                files.updateIndex(filename);
+                totalNumFiles++;
+            }
         }
+        cout<<" Complete!\n";
+        parsed = true;
+        return totalNumFiles;
     }
 }
 void getSearch(){
     // search phrase
     string search;
-    cout<<"Enter search phrase: ";
+    cout<<"\nEnter search phrase: ";
     getline(cin,search);
 
 
@@ -124,12 +168,11 @@ void getSearch(){
 
     // ask user if they want to search again
     char repeat;
-    cout<<"Would you like to search again? (Y/N): ";
+    cout<<"Would you like to search again? (y/n): ";
     cin>>repeat;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     if(repeat=='y'||repeat=='Y'){
-        cout << string(50, '\n');
         getSearch();
     }
 

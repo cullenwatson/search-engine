@@ -20,7 +20,7 @@ void FileHandler::queryTreeWords(const string& word, int count, const int& type)
     // update word
     q.changeWord(word);
     string query = q.getWord();
-    cout<<query<<endl;
+
     // get docs for word
     set<string>* temp = i.getDocsFromTree(query);
 
@@ -121,8 +121,9 @@ void FileHandler::queryHashOrgs(const string&person){
 void FileHandler::outputResults(){
     int i=1;
     if(intersect.size()==0){
-        cout<<"No search results found\n";
+        cout<<"\nNo search results found\n\n";
     }else{
+        cout<<endl;
         for(const auto& e: intersect){
             if(i>15)
                 break;
@@ -136,17 +137,6 @@ void FileHandler::outputResults(){
             i++;
         }
         intersect.clear();
-    }
-
-}
-void FileHandler::outputIntersect(){
-    cout<<"\nINTERSECTION\n";
-    if(intersect.size()==0)
-        cout<<"No search results found\n";
-    else{
-        for(const auto& e: intersect){
-            cout<<"     "<<e<<endl;
-        }
     }
 
 }

@@ -28,12 +28,9 @@ public:
     void queryHashPersons(const string&);
     void queryHashOrgs(const string&);
 
-    // intersect
-    void outputIntersect();
 
+    // output resulting set
     void outputResults();
-    // to do OR queries, union
-    // to do AND queries, intersection
 
 };
 
