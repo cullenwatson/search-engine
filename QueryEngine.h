@@ -10,6 +10,8 @@ using namespace std;
 
 class QueryEngine {
     string Word;
+
+
     // stem word after setting new word
     void stemWord();
 public:
@@ -17,6 +19,7 @@ public:
     void changeWord(const string&);
     // get word to find in tree
     string getWord(){return Word;}
+
 
 };
 

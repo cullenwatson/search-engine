@@ -17,15 +17,22 @@ private:
 public:
     // get text
     string getText();
+    string getTextBlurb();
 
     // get file
     string getFileName();
+    string getTitle();
+    string getPublishDate();
+    string getSite();
+
+
     // change file
     void changeFile(string);
 
     // get list of persons/orgs
     list<string> getPersons();
     list<string> getOrgs();
+
 
 };
 

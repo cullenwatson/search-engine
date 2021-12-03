@@ -15,9 +15,6 @@ class FileHandler {
     QueryEngine q;
 
     set<string> intersect;
-    set<string>* wordSet;
-    set<string>* persons;
-    set<string>* orgs;
 public:
     // add file to update tree
     void updateIndex(const string&);
@@ -26,17 +23,18 @@ public:
 
 
     // get results from tree
-    void queryTree(const string&);
+    void queryTreeWords(const string&, int count, const int&);
+    void queryTreeNotWords(const string&);
     void queryHashPersons(const string&);
     void queryHashOrgs(const string&);
 
     // intersect
-    void intersectSets();
     void outputIntersect();
 
-    // to do OR queries, do multiple query trees and unioning
-    // to do AND queries, do multiple querry trees and intersection
-    // to do NOT queries, do multiple querry trees and set difference
+    // todo not query (set diff)
+    void outputResults();
+    // to do OR queries, union
+    // to do AND queries, intersection
 
 };
 

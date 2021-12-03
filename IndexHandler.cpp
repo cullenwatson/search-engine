@@ -63,12 +63,16 @@ void IndexHandler::output(){
 }
 set<string>* IndexHandler::getDocsFromTree(const string&word){
     IndexEntry* result= TreeIndex.getElement(IndexEntry(word));
-    if(result==nullptr)
-        cout<<"No results found\n";
-    else
+    if(result==nullptr){
+        cout<<"No docs for that word found ("<<word<<") \n";
+        return nullptr;
+    }
+    else{
         cout<<*result<<endl;
+        return &result->getDocNamesSet();
+    }
 
-    return &result->getDocNamesSet();
+
 }
 set<string>* IndexHandler::getDocsFromHashPerson(const string&word){
     cout<<word<<" (PERSON)"<<endl;

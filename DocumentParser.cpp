@@ -1,6 +1,8 @@
 #include <fstream>
 #include<iostream>
 #include "DocumentParser.h"
+#include <sstream>
+#include <algorithm>
 using namespace std;
 
 void DocumentParser::changeFile(string c){
@@ -22,8 +24,43 @@ void DocumentParser::parseDoc(){
 string DocumentParser::getText(){
     return d["text"].GetString();
 }
+string DocumentParser::getTextBlurb(){
+    string temp = d["text"].GetString();
+    string temp2, blurb;
+
+    stringstream ss(temp);
+
+    getline(ss,temp2,' ');
+    blurb+=temp2;
+
+    int i=0;
+    while(getline(ss,temp2,' ')){
+        // get 30 words
+        temp2.erase(std::remove(temp2.begin(), temp2.end(), '\n'), temp2.end());
+        if(i>32)
+            break;
+        if(i==16){
+            blurb+="\n"+temp2;
+            i++;
+            continue;
+
+        }
+        blurb+=" "+temp2;
+        i++;
+    }
+    return blurb+"...";
+}
+string DocumentParser::getTitle(){
+    return d["title"].GetString();
+}
+string DocumentParser::getPublishDate(){
+    return d["published"].GetString();
+}
 string DocumentParser::getFileName(){
     return FileName;
+}
+string DocumentParser::getSite(){
+    return d["url"].GetString();
 }
 list<string> DocumentParser::getPersons(){
     list<string> persons;

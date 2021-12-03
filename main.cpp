@@ -33,38 +33,80 @@ void readInFiles(const string& path){
     }
 }
 void getSearch(){
-    string search="tuesday PERSON kotb ORG mark";
-    //cout<<"Enter a search:";
-    //getline(cin,search);
+    // search phrase
+    string search="tuesday";
 
-    // parse string
+    // put search phrase into ss
     stringstream ss(search);
-    string substring;
-    getline(ss,substring, ' ');
-    // chaining
-    if(substring=="AND"){
+    string word;
 
-    }else if(substring=="OR"){
+    // var to show if the word is an identifier
+    int option;
+    int count=0;
 
-    }
-    else{
-        // search for term
-        files.queryTree(substring);
+    int check=1;
 
-        // get person or org
-        while(getline(ss,substring, ' ')){
-            if(substring=="PERSON"){
-                getline(ss,substring, ' ');
-                files.queryHashPersons(substring);
-
-            }
-            else if(substring=="ORG"){
-                getline(ss,substring, ' ');
-                files.queryHashOrgs(substring);
-
+    // get every word in the phrase
+    while(getline(ss,word,' ')){
+        if(word=="AND"){
+            // get next word
+            getline(ss,word,' ');
+            option = 0;
+        }else if(word=="OR"){
+            // get next word
+            getline(ss,word,' ');
+            option = 4;
+            check = 2;
+        }else if(word=="PERSON"){
+            option = 1;
+        }else if(word=="ORG"){
+            option = 2;
+        }else if(word=="NOT"){
+            option = 3;
+        }
+        // search word
+        else{
+            // AND
+            if(check==1)
+                option = 0;
+            // OR
+            else {
+                option = 4;
             }
         }
-        files.intersectSets();
-        files.outputIntersect();
+
+        switch(option){
+            // AND
+            case 0:{
+                files.queryTreeWords(word, count, 1);
+                break;
+            }
+            // OR
+            case 4:{
+                files.queryTreeWords(word, count, 2);
+                break;
+            }
+            // get next word if it's an identifier
+            case 1:{
+                getline(ss,word,' ');
+                files.queryHashPersons(word);
+                break;
+            }
+            case 2:{
+                getline(ss,word,' ');
+                files.queryHashOrgs(word);
+                break;
+            }
+            case 3:{
+                getline(ss,word,' ');
+                files.queryTreeNotWords(word);
+                break;
+            }
+        }
+        count++;
     }
+    // output the result
+    files.outputIntersect();
+    cout<<endl;
+    files.outputResults();
 }
