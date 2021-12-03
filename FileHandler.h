@@ -34,6 +34,8 @@ public:
 
     int getNumWords(){ return i.getNumWords();};
     int getTreeSize(){return i.getTreeSize();};
+    int getNumUniquePersons(){return i.getUniquePersons();};
+    int getNumUniqueOrgs(){return i.getUniqueOrgs();};
 };
 
 

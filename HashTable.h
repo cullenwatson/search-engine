@@ -19,10 +19,11 @@ private:
     };
     int size;
     HashNode** arr;
+    int uniqueSize;
 
 public:
     // create new table
-    HashTable(): size(100003){
+    HashTable(): size(100003), uniqueSize(0){
         arr = new HashNode* [size];
     }
     void insert(const K& key, const V& val){
@@ -49,6 +50,7 @@ public:
                 // or add to list
             else
                 prev->next = bucket;
+            uniqueSize++;
         }
         else
             bucket->values.insert(val);
@@ -70,6 +72,7 @@ public:
         }
         return nullptr;
     }
+    int getUniqueSize(){return uniqueSize;};
     ~HashTable() {
         // destroy all buckets one by one
         for (int i=0; i < size; i++) {

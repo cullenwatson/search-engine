@@ -59,6 +59,8 @@ int main(int argc, char* argv[]) {
                     avgNumWords = files.getNumWords() / numOfFiles;
                 cout<<"  Average number of words indexed per article: "<<avgNumWords<<endl;
                 cout<<"  Total number of unique words: "<<files.getTreeSize()<<endl;
+                cout<<"  Total number of unique persons: "<<files.getNumUniquePersons()<<endl;
+                cout<<"  Total number of unique organizations: "<<files.getNumUniqueOrgs()<<endl<<endl;
                 break;
 
             case -1: break;

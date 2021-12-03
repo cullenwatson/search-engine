@@ -38,6 +38,12 @@ public:
         treeSize = TreeIndex.getSize();
         return treeSize;
     }
+    int getUniquePersons(){
+        return hashTablePersons.getUniqueSize();
+    }
+    int getUniqueOrgs(){
+        return hashTableOrgs.getUniqueSize();
+    }
 };
 
 #endif //INC_21F_SRCH_NGN_CULLENW_INDEXHANDLER_H
