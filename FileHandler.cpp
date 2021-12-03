@@ -20,6 +20,7 @@ void FileHandler::queryTreeWords(const string& word, int count, const int& type)
     // update word
     q.changeWord(word);
     string query = q.getWord();
+    cout<<query<<endl;
     // get docs for word
     set<string>* temp = i.getDocsFromTree(query);
 
@@ -47,6 +48,7 @@ void FileHandler::queryTreeWords(const string& word, int count, const int& type)
             // insert all elements into main set
             for(const auto& e: *temp){
                 intersect.insert(e);
+
             }
         }
 
@@ -54,8 +56,9 @@ void FileHandler::queryTreeWords(const string& word, int count, const int& type)
     // first word being searched
     else{
         // assign set to intersect
-        if(temp!=nullptr)
+        if(temp!=nullptr){
             intersect = *temp;
+        }
     }
 
 
@@ -117,23 +120,29 @@ void FileHandler::queryHashOrgs(const string&person){
 }
 void FileHandler::outputResults(){
     int i=1;
-    for(const auto& e: intersect){
-        if(i>15)
-            break;
-        doc.changeFile(e);
-        cout<<i<<". "<<doc.getSite()<<endl;
-        char esc_char = 27;
-        cout<<esc_char<<"[1m"<<doc.getTitle()<<esc_char<<"[0m"<<endl;
-        cout<<doc.getPublishDate().substr(0,10)<<" — ";
-        cout<<doc.getTextBlurb()<<endl<<endl;;
+    if(intersect.size()==0){
+        cout<<"No search results found\n";
+    }else{
+        for(const auto& e: intersect){
+            if(i>15)
+                break;
+            doc.changeFile(e);
+            cout<<i<<". "<<doc.getSite()<<endl;
+            char esc_char = 27;
+            cout<<esc_char<<"[1m"<<doc.getTitle()<<esc_char<<"[0m"<<endl;
+            cout<<doc.getPublishDate().substr(0,10)<<" — ";
+            cout<<doc.getTextBlurb()<<endl<<endl;;
 
-        i++;
+            i++;
+        }
+        intersect.clear();
     }
+
 }
 void FileHandler::outputIntersect(){
     cout<<"\nINTERSECTION\n";
     if(intersect.size()==0)
-        cout<<"No intersection results found\n";
+        cout<<"No search results found\n";
     else{
         for(const auto& e: intersect){
             cout<<"     "<<e<<endl;

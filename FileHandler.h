@@ -31,7 +31,6 @@ public:
     // intersect
     void outputIntersect();
 
-    // todo not query (set diff)
     void outputResults();
     // to do OR queries, union
     // to do AND queries, intersection

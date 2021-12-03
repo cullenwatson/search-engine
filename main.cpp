@@ -4,6 +4,7 @@
 #include "QueryEngine.h"
 #include <sstream>
 #include <algorithm>
+#include<limits>
 using namespace std;
 namespace fs = std::filesystem;
 
@@ -15,8 +16,15 @@ int main(int argc, char* argv[]) {
     char* path = "/home/cullenog/smalldataset";
     readInFiles(path);
 
+    int option;
     // get search from user
-    getSearch();
+    cout<<"1. Search Term\n";
+    cin>>option;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    switch(option){
+        case 1:
+            getSearch();
+    }
 
 
 
@@ -34,7 +42,11 @@ void readInFiles(const string& path){
 }
 void getSearch(){
     // search phrase
-    string search="tuesday";
+    string search;
+    cout<<"Enter search phrase: ";
+    getline(cin,search);
+
+
 
     // put search phrase into ss
     stringstream ss(search);
@@ -88,6 +100,7 @@ void getSearch(){
             }
             // get next word if it's an identifier
             case 1:{
+                // can't use alone
                 getline(ss,word,' ');
                 files.queryHashPersons(word);
                 break;
@@ -106,7 +119,18 @@ void getSearch(){
         count++;
     }
     // output the result
-    files.outputIntersect();
-    cout<<endl;
+    //files.outputIntersect();
     files.outputResults();
+
+    // ask user if they want to search again
+    char repeat;
+    cout<<"Would you like to search again? (Y/N): ";
+    cin>>repeat;
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    if(repeat=='y'||repeat=='Y'){
+        cout << string(50, '\n');
+        getSearch();
+    }
+
 }
