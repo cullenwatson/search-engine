@@ -232,8 +232,17 @@ void getSearch(){
     //files.outputIntersect();
     files.outputResults();
 
+    cout<<endl<<"Enter the number of the document to view it,"
+                "\nor enter 0 to return to the main menu: ";
+    int see;
+    cin>>see;
+    if(see!=0 || see>15)
+        files.viewDoc(see);
     // ask user if they want to search again
     char repeat;
+
+    files.clearTop15();
+
     cout<<"Would you like to search again? (y/n): ";
     cin>>repeat;
     cin.ignore(numeric_limits<streamsize>::max(), '\n');

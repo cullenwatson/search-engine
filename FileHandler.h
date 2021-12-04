@@ -68,6 +68,9 @@ public:
 
     void top15Sets();
     void clear();
+
+    void viewDoc(const int);
+    void clearTop15(){ top15.clear();}
 };
 
 

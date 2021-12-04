@@ -135,7 +135,6 @@ void FileHandler::outputResults(){
             k++;
         }
         intersect.clear();
-        top15.clear();
     }
 
 }
@@ -182,5 +181,44 @@ void FileHandler::clear() {
 
     i.clear();
 
+}
+void FileHandler::viewDoc(const int choice) {
+    int k=1;
+    stringstream ss;
+    for(const auto& e: top15){
+        if(k==choice){
+            doc.changeFile(e.docName);
+            char esc_char = 27;
+            cout<<endl;
+
+            cout<<doc.getSite()<<endl;
+            cout<<esc_char<<"[1m"<<doc.getTitle()<<esc_char<<"[0m"<<endl;
+            cout<<doc.getPublishDate().substr(0,10)<<" — ";
+            string temp = doc.getText();
+
+            string word;
+            stringstream ss(temp);
+            int i=1;
+            while(ss>>word){
+                 if(i%18==0){
+                     cout<<"\n";
+                     break;
+                 }
+                cout<<word<<" ";
+                i++;
+            }
+            i=1;
+            while(ss>>word){
+                if(i%20==0){
+                    cout<<"\n";
+                }
+                cout<<word<<" ";
+                i++;
+            }
+            cout<<endl<<endl;
+        }
+
+        k++;
+    }
 }
 
