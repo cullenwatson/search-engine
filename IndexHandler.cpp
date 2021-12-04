@@ -75,6 +75,7 @@ void IndexHandler::getTop50Words(){
         cout<<"    "<<i+1<<".  "<<e.getWord()<<" - "<<e.getNumDocs()<<endl;
         i++;
     }
+    TreeIndex.clearElements();
 }
 
 set<string>* IndexHandler::getDocsFromTree(const string&word){
@@ -212,6 +213,16 @@ void IndexHandler::savePersistenceFileIndexWords(){
     ofstream open("../persistenceFileWords.txt");
     TreeIndex.print(open);
     open.close();
+}
+
+void IndexHandler::clear() {
+    TreeIndex.emptyTree();
+    numWords = 0;
+    treeSize = 0;
+
+    //todo clear hash tables
+    hashTableOrgs.clear();
+    hashTablePersons.clear();
 }
 
 

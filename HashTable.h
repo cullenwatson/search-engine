@@ -103,5 +103,19 @@ public:
             out<<endl;
         }
     }
+    void clear(){
+        // destroy all buckets one by one
+        for (int i=0; i < size; i++) {
+            HashNode* curr = arr[i];
+
+            while (curr != nullptr) {
+                HashNode* prev = curr;
+                curr = curr->next;
+                delete prev;
+            }
+            arr[i] = nullptr;
+        }
+        uniqueSize=0;
+    }
 };
 #endif //INC_21F_FINAL_PROJ_TEMPLATE_HASHTABLE_H

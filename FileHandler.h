@@ -67,6 +67,7 @@ public:
     void setMainWord(const string a){mainWord = a;};
 
     void top15Sets();
+    void clear();
 };
 
 

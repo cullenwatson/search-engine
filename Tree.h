@@ -107,7 +107,6 @@ private:
             emptyTree(n->right);
             delete n;
         }
-        allElements.clear();
     }
     void output(Node* n){
         if(n!=nullptr){
@@ -126,7 +125,7 @@ private:
 
 public:
     // default constructor
-    Tree(): root(nullptr) {}
+    Tree(): root(nullptr), size(0) {}
     // destructor
     ~Tree() {
         emptyTree(root);
@@ -147,9 +146,16 @@ public:
     // specific to this project
     vector<T> allElements;
     vector<T>& getSet(){return allElements;}
+    void clearElements(){ allElements.clear();}
 
     void print(ostream& out){
         print(out, root);
+    }
+    void emptyTree(){
+        emptyTree(root);
+        allElements.clear();
+        size = 0;
+        root = nullptr;
     }
 };
 

@@ -24,9 +24,10 @@ int main(int argc, char* argv[]) {
         // output menu system
         cout<<"\nSearch Engine Menu\n";
         cout<<"  1. Load Data Files\n";
-        cout<<"  2. Search Query\n";
-        cout<<"  3. Search Engine Stats\n";
+        cout<<"  2. Execute Query\n";
+        cout<<"  3. Show Stats\n";
         cout<<"  4. Save Index to Persistence File\n";
+        cout<<"  5. Clear Index\n";
         cout<<"  Enter an option: ";
         cin>>option;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -96,6 +97,20 @@ int main(int argc, char* argv[]) {
                     cout<<" Complete!"<<endl;
 
                 }
+                break;
+            case 5:if(!parsed){
+                    cout<<"\nNo data has been loaded!\n";
+                }else{
+                    cout<<"\nClearing index..."<<flush;
+                    files.clear();
+                    cout<<" Complete!\n";
+
+                    // reset vars
+                    parsed= false;
+                    avgNumWords = 0;
+                    numOfFiles = 0;
+                }
+
                 break;
             default: option =-1;
         }

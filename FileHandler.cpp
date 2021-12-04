@@ -174,4 +174,13 @@ void FileHandler::top15Sets(){
 void FileHandler::getTop50Words(){
     i.getTop50Words();
 }
+void FileHandler::clear() {
+    intersect.clear();
+    top15.clear();
+    numFiles=0;
+    mainWord="";
+
+    i.clear();
+
+}
 
