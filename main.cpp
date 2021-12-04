@@ -1,3 +1,15 @@
+/*
+ * Cullen Watson
+ * Fall 2021 DS Final Project
+ * Boolean Search Engine Processor
+ *
+ * TO SET THE PERSISTENCE FILES
+ * SAVE TO
+ * /home/cullenog/persistencefiles/personsindex.txt
+ * /home/cullenog/persistencefiles/orgsindex.txt
+ * /home/cullenog/persistencefiles/wordindex.txt
+ *
+ */
 #include <iostream>
 #include<filesystem>
 #include "FileHandler.h"

@@ -3,7 +3,6 @@
 
 #include "IndexHandler.h"
 #include "DocumentParser.h"
-
 #include "Tree.h"
 #include "DocumentParser.h"
 #include"IndexHandler.h"
