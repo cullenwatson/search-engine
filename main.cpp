@@ -22,21 +22,43 @@ int main(int argc, char* argv[]) {
     int numOfFiles=0;
     do{
         // output menu system
-        cout<<"\n  -----SEARCH ENGINE MENU-----\n";
-        cout<<"        (1) Load Files\n";
-        cout<<"        (2) Search Query\n";
-        cout<<"        (3) Search Engine Stats\n";
-        cout<<"  ENTER A MENU OPTION: ";
+        cout<<"\nSearch Engine Menu\n";
+        cout<<"  1. Load Data Files\n";
+        cout<<"  2. Search Query\n";
+        cout<<"  3. Search Engine Stats\n";
+        cout<<"  Enter an option: ";
         cin>>option;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         switch(option){
+
             // create index
             case 1:
                 if(!parsed){
-                    cout<<"\nEnter the path to the corpus: ";
-                    getline(cin,path);
-                    numOfFiles = readInFiles(path);
+                    cout<<"\nChoose Where To Load Data From";
+                    cout<<"\n  1. Load from filepath";
+                    cout<<"\n  2. Load from corpus (persistence index)";
+                    cout<<"\n  Enter an option: ";
+
+
+                    int choice;
+                    cin>>choice;
+
+                    if(choice==1){
+                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                        cout<<"  Enter path to the dataset: ";
+                        getline(cin,path);
+                        numOfFiles = readInFiles(path);
+                    }
+                    else{
+                        cout<<"\nLoading index..."<<flush;
+                        files.loadOrgsIndex();
+                        files.loadPersonIndex();
+                        files.loadWordsIndex();
+                        cout<<" Complete!\n";
+                        parsed = true;
+                        numOfFiles = 306242;
+                    }
                 }
                 else{
                     cout<<"\nFiles already loaded!\n";
@@ -50,18 +72,18 @@ int main(int argc, char* argv[]) {
                     cout<<"\nNo data has been loaded!\n";
                 break;
             case 3:
-                cout<<"\n  -----SEARCH ENGINE STATISTICS-----\n";
-                cout<<"  \tTotal number of individual articles indexed: "<<numOfFiles<<endl;
+                cout<<"\nSearch Engine Statistics\n";
+                cout<<"  Total number of individual articles indexed: "<<numOfFiles<<endl;
                 int avgNumWords;
                 if(!parsed)
                     avgNumWords=0;
                 else
                     avgNumWords = files.getNumWords() / numOfFiles;
-                cout<<"  \tAverage number of words indexed per article: "<<avgNumWords<<endl;
-                cout<<"  \tTotal number of unique words: "<<files.getTreeSize()<<endl;
-                cout<<"  \tTotal number of unique persons: "<<files.getNumUniquePersons()<<endl;
-                cout<<"  \tTotal number of unique organizations: "<<files.getNumUniqueOrgs()<<endl;
-                cout<<"  \tTop 50 most frequent words: "<<endl;
+                cout<<"  Average number of words indexed per article: "<<avgNumWords<<endl;
+                cout<<"  Total number of unique words: "<<files.getTreeSize()<<endl;
+                cout<<"  Total number of unique persons: "<<files.getNumUniquePersons()<<endl;
+                cout<<"  Total number of unique organizations: "<<files.getNumUniqueOrgs()<<endl;
+                cout<<"  50 most frequent words: "<<endl;
                 files.getTop50Words();
                 break;
 

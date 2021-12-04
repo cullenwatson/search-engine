@@ -2,11 +2,17 @@
 #define INC_21F_SRCH_NGN_CULLENW_INDEXHANDLER_H
 
 #include "Tree.h"
+#include "porter2_stemmer.h"
 #include"IndexEntry.h"
 #include <vector>
 #include "HashTable.h"
 #include<list>
 #include <set>
+#include<fstream>
+#include<vector>
+#include <algorithm>
+#include<sstream>
+#include<unordered_map>
 class IndexHandler {
 private:
     Tree<IndexEntry> TreeIndex;
@@ -40,6 +46,11 @@ public:
         return hashTableOrgs.getUniqueSize();
     }
     void getTop50Words();
+
+    // load persistence files in
+    void loadPersistenceFileIndexOrgs();
+    void loadPersistenceFileIndexWords();
+    void loadPersistenceFileIndexPersons();
 };
 
 #endif //INC_21F_SRCH_NGN_CULLENW_INDEXHANDLER_H

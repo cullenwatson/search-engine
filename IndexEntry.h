@@ -23,6 +23,7 @@ public:
     }
     // constructor ONLY for operator==
     explicit IndexEntry(string word): Word(std::move(word)){}
+    IndexEntry(string word, const int num): Word(std::move(word)),numDocs(num) {}
 
     // add doc to DocNames if word exists
     void addDocToIdxEntry(const string&);
@@ -43,6 +44,8 @@ public:
     const int getNumDocs()const {return numDocs;}
     string getWord(){ return Word;}
 
+    void docNameSetInsert(const string&);
+    void docNamesMapInsert(const string&, const int&);
 
 };
 

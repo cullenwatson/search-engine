@@ -24,3 +24,11 @@ bool IndexEntry::operator< (const IndexEntry& s) const {
 bool IndexEntry::operator> (const IndexEntry& s) const {
     return s.Word < Word;
 }
+
+void IndexEntry::docNameSetInsert(const string &word) {
+    DocNamesSet.insert(word);
+}
+
+void IndexEntry::docNamesMapInsert(const string &word, const int &freq) {
+    DocNames[word] = freq;
+}

@@ -36,6 +36,10 @@ public:
     int getTreeSize(){return i.getTreeSize();};
     int getNumUniquePersons(){return i.getUniquePersons();};
     int getNumUniqueOrgs(){return i.getUniqueOrgs();};
+
+    void loadPersonIndex(){ i.loadPersistenceFileIndexPersons();};
+    void loadOrgsIndex(){ i.loadPersistenceFileIndexOrgs();};
+    void loadWordsIndex(){ i.loadPersistenceFileIndexWords();};
 };
 
 
