@@ -51,17 +51,17 @@ int main(int argc, char* argv[]) {
                 break;
             case 3:
                 cout<<"\n  -----SEARCH ENGINE STATISTICS-----\n";
-                cout<<"  Total number of individual articles indexed: "<<numOfFiles<<endl;
+                cout<<"  \tTotal number of individual articles indexed: "<<numOfFiles<<endl;
                 int avgNumWords;
                 if(!parsed)
                     avgNumWords=0;
                 else
                     avgNumWords = files.getNumWords() / numOfFiles;
-                cout<<"  Average number of words indexed per article: "<<avgNumWords<<endl;
-                cout<<"  Total number of unique words: "<<files.getTreeSize()<<endl;
-                cout<<"  Total number of unique persons: "<<files.getNumUniquePersons()<<endl;
-                cout<<"  Total number of unique organizations: "<<files.getNumUniqueOrgs()<<endl;
-                cout<<"  Top 50 words with frequency: "<<endl;
+                cout<<"  \tAverage number of words indexed per article: "<<avgNumWords<<endl;
+                cout<<"  \tTotal number of unique words: "<<files.getTreeSize()<<endl;
+                cout<<"  \tTotal number of unique persons: "<<files.getNumUniquePersons()<<endl;
+                cout<<"  \tTotal number of unique organizations: "<<files.getNumUniqueOrgs()<<endl;
+                cout<<"  \tTop 50 most frequent words: "<<endl;
                 files.getTop50Words();
                 break;
 

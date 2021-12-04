@@ -63,7 +63,7 @@ void IndexHandler::addDoc(const string&docName, const string&docText){
 void IndexHandler::getTop50Words(){
     TreeIndex.output();
     vector<IndexEntry>& allWords = TreeIndex.getSet();
-
+    cout<<"  \t\tWord - # of Appearances"<<endl;
     struct greaterThan
     {
         inline bool operator() (const IndexEntry& struct1, const IndexEntry& struct2)
@@ -77,7 +77,7 @@ void IndexHandler::getTop50Words(){
     for(IndexEntry& e: allWords){
         if(i>49)
             break;
-        cout<<"  "<<e.getWord()<<" "<<e.getNumDocs()<<endl;
+        cout<<"  \t\t"<<i+1<<".  "<<e.getWord()<<" - "<<e.getNumDocs()<<endl;
         i++;
     }
 }
