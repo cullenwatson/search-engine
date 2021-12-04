@@ -11,6 +11,7 @@ void IndexEntry::addDocToIdxEntry(const string& docName){
     else{
         DocNames[docName] = 1;
         DocNamesSet.insert(docName);
+        numDocs++;
     }
 }
 

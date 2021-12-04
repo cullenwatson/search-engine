@@ -14,6 +14,7 @@ private:
     string Word;
     unordered_map<string,int> DocNames;
     set<string>DocNamesSet;
+    int numDocs;
 public:
     // constructors
     IndexEntry(string word, const string& docName): Word(std::move(word)){
@@ -39,6 +40,10 @@ public:
         return os;
     }
     set<string>& getDocNamesSet(){ return DocNamesSet;}
+    const int getNumDocs()const {return numDocs;}
+    string getWord(){ return Word;}
+
+
 };
 
 

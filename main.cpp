@@ -60,11 +60,12 @@ int main(int argc, char* argv[]) {
                 cout<<"  Average number of words indexed per article: "<<avgNumWords<<endl;
                 cout<<"  Total number of unique words: "<<files.getTreeSize()<<endl;
                 cout<<"  Total number of unique persons: "<<files.getNumUniquePersons()<<endl;
-                cout<<"  Total number of unique organizations: "<<files.getNumUniqueOrgs()<<endl<<endl;
+                cout<<"  Total number of unique organizations: "<<files.getNumUniqueOrgs()<<endl;
+                cout<<"  Top 50 words with frequency: "<<endl;
+                files.getTop50Words();
                 break;
 
-            case -1: break;
-            default: option =0;
+            default: option =-1;
         }
     }while(option!=-1);
 

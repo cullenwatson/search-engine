@@ -1,7 +1,5 @@
 #include "FileHandler.h"
-void FileHandler::output(){
-    i.output();
-}
+
 void FileHandler::updateIndex(const string&file){
     // parses doc
     doc.changeFile(file);
@@ -140,3 +138,7 @@ void FileHandler::outputResults(){
     }
 
 }
+void FileHandler::getTop50Words(){
+    i.getTop50Words();
+}
+

@@ -19,7 +19,6 @@ public:
     // add file to update tree
     void updateIndex(const string&);
     // output tree
-    void output();
 
 
     // get results from tree
@@ -31,6 +30,7 @@ public:
 
     // output resulting set
     void outputResults();
+    void getTop50Words();
 
     int getNumWords(){ return i.getNumWords();};
     int getTreeSize(){return i.getTreeSize();};

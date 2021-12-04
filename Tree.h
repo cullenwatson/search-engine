@@ -2,6 +2,7 @@
 #define INC_21F_SRCH_NGN_CULLENW_TREE_H
 
 #include <iostream>
+#include<vector>
 using namespace std;
 template<typename T>
 class Tree {
@@ -110,7 +111,7 @@ private:
     void output(Node* n){
         if(n!=nullptr){
             output(n->left);
-            cout<<n->element<<endl;
+            allElements.push_back(n->element);
             output(n->right);
         }
     }
@@ -135,6 +136,9 @@ public:
     }
     int getSize(){ return size;}
 
+    // specific to this project
+    vector<T> allElements;
+    vector<T>& getSet(){return allElements;}
 };
 
 #endif //INC_21F_SRCH_NGN_CULLENW_TREE_H

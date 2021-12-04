@@ -19,11 +19,6 @@ public:
     // add words to tree
     void addDoc(const string&, const string&);
 
-    //output
-    void output();
-    // find in tree
-
-
     // add persons
     void addPersons(const string&,list<string>);
     void addOrgs(const string&,list<string>);
@@ -44,6 +39,7 @@ public:
     int getUniqueOrgs(){
         return hashTableOrgs.getUniqueSize();
     }
+    void getTop50Words();
 };
 
 #endif //INC_21F_SRCH_NGN_CULLENW_INDEXHANDLER_H
