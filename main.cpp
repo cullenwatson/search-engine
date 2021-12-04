@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
                 if(!parsed){
                     cout<<"\nChoose Where To Load Data From";
                     cout<<"\n  1. Load from filepath";
-                    cout<<"\n  2. Load from corpus (persistence index)";
+                    cout<<"\n  2. Load from persistence index";
                     cout<<"\n  Enter an option: ";
 
 

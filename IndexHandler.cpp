@@ -200,17 +200,17 @@ void IndexHandler::loadPersistenceFileIndexWords() {
     }
 }
 void IndexHandler::savePersistenceFileIndexPersons(){
-    ofstream open("../persistenceFilePersons.txt");
+    ofstream open("/home/cullenog/persistencefiles/personsindex.txt");
     hashTablePersons.output(open);
     open.close();
 }
 void IndexHandler::savePersistenceFileIndexOrgs(){
-    ofstream open("../persistenceFileOrgs.txt");
+    ofstream open("/home/cullenog/persistencefiles/orgsindex.txt");
     hashTableOrgs.output(open);
     open.close();
 }
 void IndexHandler::savePersistenceFileIndexWords(){
-    ofstream open("../persistenceFileWords.txt");
+    ofstream open("/home/cullenog/persistencefiles/wordindex.txt");
     TreeIndex.print(open);
     open.close();
 }
