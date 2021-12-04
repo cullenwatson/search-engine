@@ -13,11 +13,12 @@ void FileHandler::updateIndex(const string&file){
     i.addOrgs(file,doc.getOrgs());
 
 }
-void FileHandler::queryTreeWords(const string& word, int count, const int& type){
+void FileHandler::queryTreeWords(string word, int count, const int& type){
 
     // update word
     q.changeWord(word);
     string query = q.getWord();
+    cout<<query<<endl;
 
     // get docs for word
     set<string>* temp = i.getDocsFromTree(query);
@@ -161,7 +162,7 @@ void FileHandler::top15Sets(){
             Porter2Stemmer::stem(word);
 
             wordCount++;
-            if(word==mainWord)
+            if(word==MainWord)
                 score++;
         }
         double tf_idf = double(score) / double(wordCount) * inverseDocFreq;

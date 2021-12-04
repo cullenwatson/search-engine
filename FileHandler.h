@@ -40,7 +40,7 @@ public:
 
 
     // get results from tree
-    void queryTreeWords(const string&, int count, const int&);
+    void queryTreeWords(string, int count, const int&);
     void queryTreeNotWords(const string&);
     void queryHashPersons(const string&);
     void queryHashOrgs(const string&);
