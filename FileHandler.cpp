@@ -18,7 +18,6 @@ void FileHandler::queryTreeWords(string word, int count, const int& type){
     // update word
     q.changeWord(word);
     string query = q.getWord();
-    cout<<query<<endl;
 
     // get docs for word
     set<string>* temp = i.getDocsFromTree(query);

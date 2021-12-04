@@ -10,7 +10,7 @@ namespace fs = std::filesystem;
 
 FileHandler files;
 bool parsed = false;
-
+int avgNumWords=0;
 int readInFiles(const string&);
 void getSearch();
 int main(int argc, char* argv[]) {
@@ -58,6 +58,7 @@ int main(int argc, char* argv[]) {
                         cout<<" Complete!\n";
                         parsed = true;
                         numOfFiles = 306242;
+                        avgNumWords = 269;
                         files.setNumFiles(306242);
                     }
 
@@ -76,11 +77,6 @@ int main(int argc, char* argv[]) {
             case 3:
                 cout<<"\nSearch Engine Statistics\n";
                 cout<<"  Total number of individual articles indexed: "<<numOfFiles<<endl;
-                int avgNumWords;
-                if(!parsed)
-                    avgNumWords=0;
-                else
-                    avgNumWords = files.getNumWords() / numOfFiles;
                 cout<<"  Average number of words indexed per article: "<<avgNumWords<<endl;
                 cout<<"  Total number of unique words: "<<files.getTreeSize()<<endl;
                 cout<<"  Total number of unique persons: "<<files.getNumUniquePersons()<<endl;
@@ -118,6 +114,7 @@ int readInFiles(const string& path){
         cout<<" Complete!\n";
         parsed = true;
         files.setNumFiles(totalNumFiles);
+        avgNumWords = files.getNumWords() / totalNumFiles;
         return totalNumFiles;
     }
 }
