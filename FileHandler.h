@@ -8,13 +8,31 @@
 #include "DocumentParser.h"
 #include"IndexHandler.h"
 #include "QueryEngine.h"
-
+#include "rapidjson/document.h"
+#include "rapidjson/istreamwrapper.h"
+#include<sstream>
 class FileHandler {
+    struct docWithMetrc{
+        string docName;
+        double metric;
+
+        docWithMetrc(const string doc, const double met): docName(doc), metric(met){}
+
+        bool operator< (const docWithMetrc& s) const {
+            return metric > s.metric;
+        }
+
+    };
+
     IndexHandler i;
     DocumentParser doc;
     QueryEngine q;
 
     set<string> intersect;
+    set<docWithMetrc> top15;
+    int numFiles;
+
+    string mainWord;
 public:
     // add file to update tree
     void updateIndex(const string&);
@@ -40,6 +58,11 @@ public:
     void loadPersonIndex(){ i.loadPersistenceFileIndexPersons();};
     void loadOrgsIndex(){ i.loadPersistenceFileIndexOrgs();};
     void loadWordsIndex(){ i.loadPersistenceFileIndexWords();};
+
+    void setNumFiles(const int a){numFiles = a;};
+    void setMainWord(const string a){mainWord = a;};
+
+    void top15Sets();
 };
 
 

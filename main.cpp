@@ -58,7 +58,9 @@ int main(int argc, char* argv[]) {
                         cout<<" Complete!\n";
                         parsed = true;
                         numOfFiles = 306242;
+                        files.setNumFiles(306242);
                     }
+
                 }
                 else{
                     cout<<"\nFiles already loaded!\n";
@@ -89,6 +91,7 @@ int main(int argc, char* argv[]) {
 
             default: option =-1;
         }
+
     }while(option!=-1);
 
     return 0;
@@ -100,6 +103,7 @@ int readInFiles(const string& path){
     struct stat info;
     if( stat( path.c_str(), &info ) != 0 ){
         cout<<"\nFolder not found\n";
+        files.setNumFiles(0);
         return 0;
     }else{
         cout<<"\nCreating index..."<<flush;
@@ -113,13 +117,14 @@ int readInFiles(const string& path){
         }
         cout<<" Complete!\n";
         parsed = true;
+        files.setNumFiles(totalNumFiles);
         return totalNumFiles;
     }
 }
 void getSearch(){
     // search phrase
     string search;
-    cout<<"\nEnter search phrase: ";
+    cout<<"\nEnter search query: ";
     getline(cin,search);
 
 
@@ -139,10 +144,13 @@ void getSearch(){
         if(word=="AND"){
             // get next word
             getline(ss,word,' ');
+            files.setMainWord(word);
             option = 0;
         }else if(word=="OR"){
             // get next word
             getline(ss,word,' ');
+            files.setMainWord(word);
+
             option = 4;
             check = 2;
         }else if(word=="PERSON"){
@@ -154,6 +162,8 @@ void getSearch(){
         }
         // search word
         else{
+            if(count==0)
+                files.setMainWord(word);
             // AND
             if(check==1)
                 option = 0;

@@ -117,26 +117,59 @@ void FileHandler::queryHashOrgs(const string&person){
     }
 }
 void FileHandler::outputResults(){
-    int i=1;
-    if(intersect.size()==0){
+    top15Sets();
+    int k=1;
+    if(top15.empty()){
         cout<<"\nNo search results found\n\n";
     }else{
-        cout<<endl;
-        for(const auto& e: intersect){
-            if(i>15)
+        for(const auto& e: top15){
+            if(k>15)
                 break;
-            doc.changeFile(e);
-            cout<<i<<". "<<doc.getSite()<<endl;
+            doc.changeFile(e.docName);
+            cout<<k<<". "<<doc.getSite()<<endl;
             char esc_char = 27;
             cout<<esc_char<<"[1m"<<doc.getTitle()<<esc_char<<"[0m"<<endl;
             cout<<doc.getPublishDate().substr(0,10)<<" — ";
             cout<<doc.getTextBlurb()<<endl<<endl;;
 
-            i++;
+            k++;
         }
         intersect.clear();
+        top15.clear();
     }
 
+}
+void FileHandler::top15Sets(){
+
+    string MainWord = mainWord;
+    Porter2Stemmer::trim(MainWord);
+    Porter2Stemmer::stem(MainWord);
+    string word;
+    stringstream ss;
+    double inverseDocFreq = log(double(numFiles) / intersect.size());
+    for(const auto&e:intersect){
+        doc.changeFile(e);
+        string temp = doc.getText();
+        // specific metrics for each doc
+        int score=0;
+        int wordCount=0;
+
+        // get each word
+        ss.str(temp);
+        while(ss>>word){
+            Porter2Stemmer::trim(word);
+            Porter2Stemmer::stem(word);
+
+            wordCount++;
+            if(word==mainWord)
+                score++;
+        }
+        double tf_idf = double(score) / double(wordCount) * inverseDocFreq;
+        docWithMetrc obj(e,tf_idf);
+        top15.insert(obj);
+
+        ss.clear();
+    }
 }
 void FileHandler::getTop50Words(){
     i.getTop50Words();
