@@ -87,5 +87,21 @@ public:
         // destroy the hash table
         delete[]arr;
     }
+    void output(ostream& out){
+        for(int i=0;i<size;i++){
+            HashNode* bucket = arr[i];
+            if(bucket==nullptr) continue;
+            else{
+                while(bucket!=nullptr){
+                    out<<bucket->key;
+                    for(const auto& e: bucket->values){
+                        out<<","<<e;
+                    }
+                    bucket = bucket->next;
+                }
+            }
+            out<<endl;
+        }
+    }
 };
 #endif //INC_21F_FINAL_PROJ_TEMPLATE_HASHTABLE_H

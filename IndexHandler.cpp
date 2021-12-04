@@ -198,5 +198,21 @@ void IndexHandler::loadPersistenceFileIndexWords() {
         cout<<"Persistence file (WORDS) not found."<<endl<<endl;
     }
 }
+void IndexHandler::savePersistenceFileIndexPersons(){
+    ofstream open("../persistenceFilePersons.txt");
+    hashTablePersons.output(open);
+    open.close();
+}
+void IndexHandler::savePersistenceFileIndexOrgs(){
+    ofstream open("../persistenceFileOrgs.txt");
+    hashTableOrgs.output(open);
+    open.close();
+}
+void IndexHandler::savePersistenceFileIndexWords(){
+    ofstream open("../persistenceFileWords.txt");
+    TreeIndex.print(open);
+    open.close();
+}
+
 
 

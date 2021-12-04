@@ -34,10 +34,11 @@ public:
     bool operator== (const IndexEntry& s) const;
 
     friend std::ostream& operator<< (std::ostream&os, const IndexEntry&s){
-        os << s.Word<<" (QUERY)"<<endl;
+        os << s.Word<<","<<s.numDocs;
         for(const auto & docName : s.DocNames){
-            os<<"     "<<docName.first<<" ("<<docName.second<<") "<<endl;
+            os<<","<<docName.first<<","<<docName.second;
         }
+        os<<endl;
         return os;
     }
     set<string>& getDocNamesSet(){ return DocNamesSet;}

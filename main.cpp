@@ -26,6 +26,7 @@ int main(int argc, char* argv[]) {
         cout<<"  1. Load Data Files\n";
         cout<<"  2. Search Query\n";
         cout<<"  3. Search Engine Stats\n";
+        cout<<"  4. Save Index to Persistence File\n";
         cout<<"  Enter an option: ";
         cin>>option;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -84,7 +85,18 @@ int main(int argc, char* argv[]) {
                 cout<<"  50 most frequent words: "<<endl;
                 files.getTop50Words();
                 break;
+            case 4:
+                if(!parsed){
+                    cout<<"\nNo data has been loaded!\n";
+                }else{
+                    cout<<"\nSaving index to persistence file... "<<flush;
+                    files.saveOrgIndex();
+                    files.savePersonIndex();
+                    files.saveWordIndex();
+                    cout<<" Complete!"<<endl;
 
+                }
+                break;
             default: option =-1;
         }
 
@@ -111,7 +123,7 @@ int readInFiles(const string& path){
                 totalNumFiles++;
             }
         }
-        cout<<" Complete!\n";
+        cout<<"Complete!\n";
         parsed = true;
         files.setNumFiles(totalNumFiles);
         avgNumWords = files.getNumWords() / totalNumFiles;
@@ -214,5 +226,4 @@ void getSearch(){
     if(repeat=='y'||repeat=='Y'){
         getSearch();
     }
-
 }

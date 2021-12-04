@@ -107,12 +107,20 @@ private:
             emptyTree(n->right);
             delete n;
         }
+        allElements.clear();
     }
     void output(Node* n){
         if(n!=nullptr){
             output(n->left);
             allElements.push_back(n->element);
             output(n->right);
+        }
+    }
+    void print(ostream& out, Node* n)const{
+        if(n!=nullptr){
+            out<<n->element;
+            print(out,n->left);
+            print(out,n->right);
         }
     }
 
@@ -139,6 +147,10 @@ public:
     // specific to this project
     vector<T> allElements;
     vector<T>& getSet(){return allElements;}
+
+    void print(ostream& out){
+        print(out, root);
+    }
 };
 
 #endif //INC_21F_SRCH_NGN_CULLENW_TREE_H

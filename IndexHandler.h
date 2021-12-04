@@ -51,6 +51,10 @@ public:
     void loadPersistenceFileIndexOrgs();
     void loadPersistenceFileIndexWords();
     void loadPersistenceFileIndexPersons();
+
+    void savePersistenceFileIndexPersons();
+    void savePersistenceFileIndexOrgs();
+    void savePersistenceFileIndexWords();
 };
 
 #endif //INC_21F_SRCH_NGN_CULLENW_INDEXHANDLER_H

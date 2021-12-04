@@ -59,6 +59,10 @@ public:
     void loadOrgsIndex(){ i.loadPersistenceFileIndexOrgs();};
     void loadWordsIndex(){ i.loadPersistenceFileIndexWords();};
 
+    void savePersonIndex(){ i.savePersistenceFileIndexPersons();};
+    void saveOrgIndex(){ i.savePersistenceFileIndexOrgs();};
+    void saveWordIndex(){ i.savePersistenceFileIndexWords();};
+
     void setNumFiles(const int a){numFiles = a;};
     void setMainWord(const string a){mainWord = a;};
 
