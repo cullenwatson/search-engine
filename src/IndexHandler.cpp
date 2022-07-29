@@ -123,8 +123,9 @@ set<string>* IndexHandler::getDocsFromHashOrgs(const string&word){
     return hashTableOrgs.get(word);
 }
 void IndexHandler::loadPersistenceFileIndexPersons(){
-    ifstream file("/home/cullenog/persistencefiles/personsindex.txt");
+    ifstream file("/home/pc/persistence_index/personsindex.txt");
     if(file.is_open()){
+
         string line;
         while(getline(file,line)){
             stringstream ss(line);
@@ -144,8 +145,9 @@ void IndexHandler::loadPersistenceFileIndexPersons(){
     }
 }
 void IndexHandler::loadPersistenceFileIndexOrgs(){
-    ifstream file("/home/cullenog/persistencefiles/orgindex.txt");
+    ifstream file("/home/pc/persistence_index/orgsindex.txt");
     if(file.is_open()){
+
         string line;
         while(getline(file,line)){
             stringstream ss(line);
@@ -165,8 +167,9 @@ void IndexHandler::loadPersistenceFileIndexOrgs(){
     }
 }
 void IndexHandler::loadPersistenceFileIndexWords() {
-    ifstream file("/home/cullenog/persistencefiles/wordindex.txt");
+    ifstream file("/home/pc/persistence_index/wordindex.txt");
     if(file.is_open()){
+
         string line;
         while(getline(file,line)){
             stringstream ss(line);
@@ -200,17 +203,17 @@ void IndexHandler::loadPersistenceFileIndexWords() {
     }
 }
 void IndexHandler::savePersistenceFileIndexPersons(){
-    ofstream open("/home/cullenog/persistencefiles/personsindex.txt");
+    ofstream open("/home/pc/persistence_index/personsindex.txt");
     hashTablePersons.output(open);
     open.close();
 }
 void IndexHandler::savePersistenceFileIndexOrgs(){
-    ofstream open("/home/cullenog/persistencefiles/orgsindex.txt");
+    ofstream open("/home/pc/persistence_index/orgsindex.txt");
     hashTableOrgs.output(open);
     open.close();
 }
 void IndexHandler::savePersistenceFileIndexWords(){
-    ofstream open("/home/cullenog/persistencefiles/wordindex.txt");
+    ofstream open("/home/pc/persistence_index/wordindex.txt");
     TreeIndex.print(open);
     open.close();
 }

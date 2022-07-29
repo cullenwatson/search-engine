@@ -7,8 +7,8 @@
 #include "DocumentParser.h"
 #include"IndexHandler.h"
 #include "QueryEngine.h"
-#include "rapidjson/document.h"
-#include "rapidjson/istreamwrapper.h"
+#include "../rapidjson/document.h"
+#include "../rapidjson/istreamwrapper.h"
 #include<sstream>
 class FileHandler {
     struct docWithMetrc{

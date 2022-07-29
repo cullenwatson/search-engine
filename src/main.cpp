@@ -38,8 +38,8 @@ int main(int argc, char* argv[]) {
         cout<<"  1. Load Data Files\n";
         cout<<"  2. Execute Query\n";
         cout<<"  3. Show Stats\n";
-        cout<<"  4. Save Index to Persistence File\n";
-        cout<<"  5. Clear Index\n";
+        cout<<"  4. Clear Index\n";
+        cout<<"  5. Quit\n";
         cout<<"  Enter an option: ";
         cin>>option;
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -49,32 +49,12 @@ int main(int argc, char* argv[]) {
             // create index
             case 1:
                 if(!parsed){
-                    cout<<"\nChoose Where To Load Data From";
-                    cout<<"\n  1. Load from filepath";
-                    cout<<"\n  2. Load from persistence index";
-                    cout<<"\n  Enter an option: ";
+
+                    cout<<"  Enter path to the dataset: ";
+                    getline(cin,path);
+                    numOfFiles = readInFiles(path);
 
 
-                    int choice;
-                    cin>>choice;
-
-                    if(choice==1){
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                        cout<<"  Enter path to the dataset: ";
-                        getline(cin,path);
-                        numOfFiles = readInFiles(path);
-                    }
-                    else{
-                        cout<<"\nLoading index..."<<flush;
-                        files.loadOrgsIndex();
-                        files.loadPersonIndex();
-                        files.loadWordsIndex();
-                        cout<<" Complete!\n";
-                        parsed = true;
-                        numOfFiles = 306242;
-                        avgNumWords = 269;
-                        files.setNumFiles(306242);
-                    }
 
                 }
                 else{
@@ -98,19 +78,8 @@ int main(int argc, char* argv[]) {
                 cout<<"  50 most frequent words: "<<endl;
                 files.getTop50Words();
                 break;
-            case 4:
-                if(!parsed){
-                    cout<<"\nNo data has been loaded!\n";
-                }else{
-                    cout<<"\nSaving index to persistence file... "<<flush;
-                    files.saveOrgIndex();
-                    files.savePersonIndex();
-                    files.saveWordIndex();
-                    cout<<" Complete!"<<endl;
 
-                }
-                break;
-            case 5:if(!parsed){
+            case 4:if(!parsed){
                     cout<<"\nNo data has been loaded!\n";
                 }else{
                     cout<<"\nClearing index..."<<flush;
@@ -144,7 +113,7 @@ int readInFiles(const string& path){
         cout<<"\nCreating index..."<<flush;
         for (const auto & entry : fs::recursive_directory_iterator(path)){
             if(!is_directory(entry)){
-                string filename = entry.path().c_str();
+                string filename = entry.path().string();
                 // update index
                 files.updateIndex(filename);
                 totalNumFiles++;
