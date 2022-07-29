@@ -49,7 +49,7 @@ entity with Snap and a person entity of cramer
 
 Compile and build with CMAKE. There are no command-line arguments.
 
-First, load in the dataset by entering option 1 in the menu and then specifying the location of the dataset.
+First, load in the dataset by entering option one in the menu and then specifying the location of the dataset.
 
 Type `../data` to use the 57,000 articles included in the repo. The index will be created after around a minute. You can then begin querying.
 
