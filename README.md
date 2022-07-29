@@ -8,7 +8,7 @@ Email: cgwatson@smu.edu
 
 This program is a search engine for a large collection of financial news
 articles from Jan - May 2018. The dataset contains more than 300,000 articles. Included in the repo 
-is the first 57,000 articles to test the search with.
+is the first 57,000 articles to test the search engine with.
 
 It uses a self-implemented AVL Tree for storage of word objects and a HashTable for the associated people and organizations of the article.
 The articles are ranked in the search results by term-frequency/inverse document frequency (tf/idf) metric.
@@ -49,7 +49,7 @@ entity with Snap and a person entity of cramer
 
 Compile and build with CMAKE. There are no command-line arguments.
 
-First, load in the dataset by entering option 1 and then specifying the location of the dataset.
+First, load in the dataset by entering option one in the menu and then specifying the location of the dataset.
 
 Type `../data` to use the 57,000 articles included in the repo. The index will be created after around a minute. You can then begin querying.
 
