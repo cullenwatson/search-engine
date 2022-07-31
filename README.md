@@ -47,6 +47,8 @@ entity with Snap and a person entity of cramer
 
 ## How to Run (must use WSL)
 
+[Video Demo] (https://www.youtube.com/watch?v=YKTyg1Lear4)
+
 Compile and build with CMAKE. There are no command-line arguments.
 
 First, load in the dataset by entering option one in the menu and then specifying the location of the dataset.
