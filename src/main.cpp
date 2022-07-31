@@ -75,7 +75,7 @@ int main(int argc, char* argv[]) {
                 cout<<"  Total number of unique words: "<<files.getTreeSize()<<endl;
                 cout<<"  Total number of unique persons: "<<files.getNumUniquePersons()<<endl;
                 cout<<"  Total number of unique organizations: "<<files.getNumUniqueOrgs()<<endl;
-                cout<<"  50 most frequent words: "<<endl;
+                cout<<"  50 most frequent words (stemmed version): "<<endl;
                 files.getTop50Words();
                 break;
 
