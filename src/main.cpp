@@ -114,6 +114,7 @@ int readInFiles(const string& path){
         for (const auto & entry : fs::recursive_directory_iterator(path)){
             if(!is_directory(entry)){
                 string filename = entry.path().string();
+                cout<<"Adding file to index ("+ filename<<")"<<endl;
                 // update index
                 files.updateIndex(filename);
                 totalNumFiles++;
