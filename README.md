@@ -47,7 +47,7 @@ entity with Snap and a person entity of cramer
 
 ## How to Run (must use WSL)
 
-[Video Demo](https://www.youtube.com/watch?v=YKTyg1Lear4)
+[Video Demo](https://youtu.be/vdIWaVFAuaw)
 
 Compile and build with CMAKE. There are no command-line arguments.
 
