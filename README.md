@@ -2,7 +2,7 @@
 
 This repository was created and maintained by Cullen Watson.
 
-Email: cgwatson@smu.edu
+Email: cullen@cullenwatson.com
 
 ## Functionality
 
